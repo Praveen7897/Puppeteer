@@ -1,5 +1,5 @@
 const puppeteer = require("puppeteer");
-const removeHtmlTags = require('./Functions/removeHTMLTags');
+const removeHtmlTags = require('./utils/removeHTMLTags');
 require('dotenv').config();
 const fs = require('fs');
 
@@ -18,15 +18,15 @@ const fs = require('fs');
 //Get data from the website
 const getData= await page.evaluate(()=>{
   const getTitle= document.querySelectorAll(".card-title")
-  let Titles=[]
+  let titles=[]
   getTitle.forEach((tag)=>{
-    Titles.push({Title:tag.innerHTML})
+    titles.push({Title:tag.innerHTML})
   })
-  return Titles
+  return titles
 })
 
 //Remove HTML tags
-let cleanArray = getData.map(obj => {
+let scrappedData = getData.map(obj => {
   let newObj = {};
   for (let key in obj) {
     newObj[key] = removeHtmlTags(obj[key]);
@@ -37,7 +37,7 @@ let cleanArray = getData.map(obj => {
 
 
 // Convert JSON data to a string
-let jsonString = JSON.stringify(cleanArray, null, 2);
+let jsonString = JSON.stringify(scrappedData, null, 2);
 
 // Specify the file path where you want to save the JSON data
 const filePath = 'output.json';
