@@ -2,15 +2,15 @@
   "name": "puppeteer",
   "version": "1.0.0",
   "description": "web Scrape",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node main.js"
   },
   "author": "Praveen",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.4.5",
     "npm": "^10.5.2",
-    "puppeteer": "^22.6.5"
+    "puppeteer": "^22.9.0"
   }
 }
